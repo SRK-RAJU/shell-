@@ -21,3 +21,5 @@ robbitmq: ## setup robbitmq component
 redis: ## setup redis component
 	@bash components/redis.sh
 
+
+## this is making file
