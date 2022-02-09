@@ -1,5 +1,5 @@
 
-help: ## This help dialog.
+help: ## This help dialog  help full for step by step
     @IFS=$$'\n' ; \
     help_lines=(`fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//'`); \
     for help_line in $${help_lines[@]}; do \
