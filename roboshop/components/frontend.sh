@@ -14,7 +14,7 @@ Start $?
 
 Print " Downloading HTML Pages"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-Stat $?
+Start $?
 
 Print "Remove Old Hmtl Pages"
 rm -rf  /usr/share/nginx/html/* &>>$LOG
