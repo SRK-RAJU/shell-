@@ -5,7 +5,7 @@ one: #### target one
 two: #### target two
 	@echo two
 
-## target
+## targets
 
 ##			rules
 
