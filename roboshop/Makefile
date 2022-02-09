@@ -31,4 +31,4 @@ redis: ## setup redis component
 	@bash components/redis.sh
 
 
-## this is making files
+## this is making file
