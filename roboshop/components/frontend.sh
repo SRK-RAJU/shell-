@@ -1,15 +1,47 @@
 #!/bin/bash
 # The frontend is the service in RobotShop to serve the web content over Nginx.
+Print ()
+{
+  echo -n -e "\e[1m$1\e[0m ... "
+  echo -e "\n\e[36m================= $1 ================\e[0m" >>$LOG
+}
+
+
+Start() {
+  if [ $1 -eq 0 ]; then
+    echo -e "\e[1;32mSUCCESS\e[0m"
+    else
+      echo -e "\e[1;31mFAILURE\e[0m"
+      echo -e "\e[1;33mScript failed and check the detailed log in $LOG file\e[0m]"
+      exit 1
+    fi
+}
+LOG=/tmp/roboshop.log
+rm -f $LOG
+
+Print "Installing Nginx"
 
 # To Install Nginx.
+yum install nginx -y &>>$LOG
+Stat $?
 
-# yum install nginx -y
-# systemctl enable nginx
-# systemctl start nginx
-Let's download the HTDOCS content and deploy under the Nginx path.
+
+Ptint "Enabling Nginx"
+
+ systemctl enable nginx
+ Stat $?
+
+ Print "Starting Nginx"
+
+systemctl start nginx
+Stat $?
+
+exit
+
+
 
 # curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-Deploy in Nginx Default Location.
+
 
 # cd /usr/share/nginx/html
 # rm -rf *
@@ -18,6 +50,6 @@ Deploy in Nginx Default Location.
 # mv static/* .
 # rm -rf frontend-master static README.md
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
-Finally restart the service once to effect the changes.
+
 
 # systemctl restart nginx
