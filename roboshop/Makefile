@@ -1,4 +1,4 @@
-help:
+
 help: ## This help dialog.
     @IFS=$$'\n' ; \
     help_lines=(`fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//'`); \
