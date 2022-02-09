@@ -9,25 +9,29 @@ help: ## This help dialog  help full for step by step
         help_info=`echo $${help_split[2]} | sed -e 's/^ *//' -e 's/ *$$//'` ; \
         printf "%-30s %s\n" $$help_command $$help_info ; \
     done
-cart: ## setup cart component
+
+git-pull:
+	@echo ---------- GIT PULL CODE RUNS ------------
+	@git pull &>/dev/null
+cart: git-pull  ## setup cart component
 	@bash components/cart.sh
-catalogue: ## setup catalogue component
+catalogue: git-pull ## setup catalogue component
 	@bash components/catalogue.sh
-user: ## setup user component
+user:  git-pull ## setup user component
 	@bash components/user.sh
-shipping: ## setup shipping component
+shipping: git-pull ## setup shipping component
 	@bash components/shipping.sh
-mysql: ## setup mysql component
+mysql: git-pull ## setup mysql component
 	@bash components/mysql.sh
-mongodb: ## setup mongodb component
+mongodb: git-pull  ## setup mongodb component
 	@bash components/mongodb.sh
-payment: ## setup payment component
+payment:git-pull  ## setup payment component
 	@bash components/payment.sh
-frontend: ## setup frontend component
+frontend: git-pull ## setup frontend component
 	@bash components/frontend.sh
-robbitmq: ## setup robbitmq component
+robbitmq:git-pull  ## setup robbitmq component
 	@bash components/robbitmq.sh
-redis: ## setup redis component
+redis:git-pull  ## setup redis component
 	@bash components/redis.sh
 
 
