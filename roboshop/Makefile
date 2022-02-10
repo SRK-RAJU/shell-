@@ -14,25 +14,25 @@ git-pull:
 	@echo ---------- GIT PULL CODE RUNS ------------
 	@git pull &>/dev/null
 cart: git-pull  ## setup cart component
-	@bash components/cart.sh
+	@sudo bash components/cart.sh
 catalogue: git-pull ## setup catalogue component
-	@bash components/catalogue.sh
+	@sudo bash components/catalogue.sh
 user:  git-pull ## setup user component
-	@bash components/user.sh
+	@sudo bash components/user.sh
 shipping: git-pull ## setup shipping component
-	@bash components/shipping.sh
+	@sudo bash components/shipping.sh
 mysql: git-pull ## setup mysql component
-	@bash components/mysql.sh
+	@sudo bash components/mysql.sh
 mongodb: git-pull  ## setup mongodb component
-	@bash components/mongodb.sh
+	@sudo bash components/mongodb.sh
 payment:git-pull  ## setup payment component
-	@bash components/payment.sh
+	@sudo bash components/payment.sh
 frontend: git-pull ## setup frontend component
-	@bash components/frontend.sh
+	@sudo bash components/frontend.sh
 robbitmq:git-pull  ## setup robbitmq component
-	@bash components/robbitmq.sh
+	@sudo bash components/robbitmq.sh
 redis:git-pull  ## setup redis component
-	@bash components/redis.sh
+	@sudo bash components/redis.sh
 
 
 ## this is making file
