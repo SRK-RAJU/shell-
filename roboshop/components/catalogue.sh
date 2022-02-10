@@ -9,7 +9,15 @@ Start $?
 
 ##o to run the catalogue service we choose to run as a normal user and that user name should be more relevant to the project. Hence we will use roboshop as the username to run the service.
 Print "Add Roboshop User"
+id roboshop &>>$LOG
+if [ $? -eq 0 ]; then
+  echo User Roboshop already exists &>>$LOG
+  else
+
  useradd roboshop &>>$LOG
+
+ fi
+
  Start $?
 
 ##So let's switch to the roboshop user and run the following commands.
