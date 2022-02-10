@@ -33,6 +33,16 @@ Print "Remove the Roboshop Project"
  Print "Extracting Catalogue"
 unzip -o -d /home/roboshop  /tmp/catalogue.zip &>>$LOG
 Start $?
+Print " Copy Content"
+mv /home/roboshop/catalogue-main /home/roboshop/catalogue
+Start $?
+Print "Install Node.js Dependencies"
+cd /home/roboshop/catalogue
+npm install --unsafe-perm &>>$LOG
+Start $?
+Print "Fix App Permission"
+chown -R roboshop:roboshop /home/roboshop
+Start $?
 
 #$ mv catalogue-main catalogue
 #$ cd /home/roboshop/catalogue
