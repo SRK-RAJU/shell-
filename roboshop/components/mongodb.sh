@@ -34,7 +34,7 @@ Print "Download Schema"
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG
 Start $?
 Print "Extract The Schema"
-unzip -o -d /tmp mongodb.zip &>>$LOG
+unzip -o -d /tmp  /tmp/mongodb.zip &>>$LOG
 Start $?
 Print "Load the schema"
 
