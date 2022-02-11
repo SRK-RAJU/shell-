@@ -2,12 +2,11 @@ Print ()
 {
   MSPACE=$(cat $0 | grep ^Print | awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -l)
   LSPACE=$(echo $1 | awk '{print length}')
-
-  SPACE=$(( $MSPACE-$LSPACE ))
+  SPACE=$(($MSPACE-$LSPACE))
   SPACES=""
   while [ $SPACE -gt 0 ]; do
     SPACES="$SPACES$(echo ' ')"
-    SPACE=$(( $SPACE-1 ))
+    SPACE=$(($SPACE-1))
     done
 
   echo -n -e "\e[1m$1${SPACES}\e[0m ... "
