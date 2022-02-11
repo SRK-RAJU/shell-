@@ -9,7 +9,7 @@ Start() {
     else
       echo -e "\e[1;31mFAILURE\e[0m"
       echo -e "\e[1;33mScript failed and check the detailed log in $LOG file\e[0m]"
-      exit 1
+      exit
     fi
 }
 LOG=/tmp/roboshop.log
