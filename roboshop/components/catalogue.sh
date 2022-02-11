@@ -27,7 +27,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/cat
 Start $?
 
 Print "Remove the Roboshop Project"
-rm -rf /home/roboshop/catalogue &>>$LOG
+rm -rf /home/roboshop/catalogue
 
 Start $?
 Print "Extracting Catalogue"
@@ -35,7 +35,7 @@ unzip -o -d /home/roboshop  /tmp/catalogue.zip &>>$LOG
 Start $?
 
 Print " Copy Content"
-mv /home/roboshop/catalogue-main /home/roboshop/catalogue
+mv /home/roboshop/catalogue-main  /home/roboshop/catalogue
 Start $?
 
 Print "Install Node.js Dependencies"
