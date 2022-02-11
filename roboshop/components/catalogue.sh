@@ -41,7 +41,8 @@ Start $?
 
 Print "Install Node.js Dependencies"
 cd /home/roboshop/catalogue
-npm install  --unsafe-perm &>>$LOG
+
+##npm install  --unsafe-perm &>>$LOG
 Start $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop /home/roboshop
