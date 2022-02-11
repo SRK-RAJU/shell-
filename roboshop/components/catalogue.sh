@@ -1,4 +1,5 @@
-##Let's now set up the catalogue application.
+#!/bin/bash
+
 source components/common.sh
 
 Print "Installing Nodejs "
