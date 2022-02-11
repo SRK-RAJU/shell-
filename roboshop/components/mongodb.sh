@@ -1,7 +1,9 @@
 #!/bin/bash
 
 source components/common.sh
+
 MSPACE=$(cat $0 | grep ^Print |awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -l)
+
 Print "Downloading REPO"
 
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>$LOG
@@ -45,4 +47,5 @@ mongo < users.js &>>$LOG
 
 Start $?
 
+exit
 
