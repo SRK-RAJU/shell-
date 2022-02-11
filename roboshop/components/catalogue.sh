@@ -39,9 +39,10 @@ mv /home/roboshop/catalogue-main /home/roboshop/catalogue
 Start $?
 
 Print "Install Node.js Dependencies"
+
 cd /home/roboshop/catalogue
 
-npm  install --unsafe-perm &>>$LOG
+npm install &>>$LOG
 
 Start $?
 Print "Fix App Permission"
