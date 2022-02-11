@@ -21,4 +21,4 @@ sed -i -e 's/127.0.0.1/0.0.0.0/'  /etc/redis.conf &>>$LOG
 Start $?
 
 Print "Start Redis Database"
-systemctl enable redis &>>$LOG && systemctl start redis &>>$LOG
+systemctl enable redis &>>$LOG && systemctl restart redis &>>$LOG
