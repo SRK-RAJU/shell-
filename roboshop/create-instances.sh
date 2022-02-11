@@ -14,4 +14,4 @@ else
  ## xargs is used to remove the double quotes in displaying the output
 
  sed -e "s/DNSNAME/$1.roboshop.internal/"  -e "s/IPADDRESS/${IP}" record.json >/tmp/record.json
- ## aws route53 change-resource-record-sets --hosted-zone-id Z034785541G9EV6BV8GL --change-batch file:///tmp/record.json | jq
+ aws route53 change-resource-record-sets --hosted-zone-id Z034785541G9EV6BV8GL --change-batch file:///tmp/record.json | jq
