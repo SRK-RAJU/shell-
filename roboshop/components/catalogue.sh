@@ -43,17 +43,16 @@ Print "Install Node.js Dependencies"
 cd /home/roboshop/catalogue
 
 npm install &>>$LOG
-
 Start $?
 Print "Fix App Permission"
-sudo chown -R roboshop:roboshop /home/roboshop
-Start $?
+##sudo chown -R roboshop:roboshop /home/roboshop
+##Start $?
 Print "Update DNS Records in SystemID Config"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue.service &>>$LOG
+##sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue.service &>>$LOG
 Start $?
 Print "Copy SystemID file"
 
 
-mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG
+##mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG
 Start "Finally Catalogue Service Started "
 systemctl daemon-reload &>>$LOG && systemctl start catalogue &>>$LOG  && systemctl enable catalogue &>>$LOG
