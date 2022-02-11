@@ -46,7 +46,7 @@ npm install &>>$LOG
 
 Start $?
 Print "Fix App Permission"
-chown -R roboshop:roboshop /home/roboshop
+sudo chown -R roboshop:roboshop /home/roboshop
 Start $?
 Print "Update DNS Records in SystemID Config"
 sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue.service &>>$LOG
@@ -54,11 +54,6 @@ Start $?
 Print "Copy SystemID file"
 
 
-#$ mv catalogue-main catalogue
-#$ cd /home/roboshop/catalogue
-#$ npm install
-##NOTE: We need to update the IP address of MONGODB Server in systemd.service file
-##Now, lets set up the service with systemctl.
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG
 Start "Finally Catalogue Service Started "
 systemctl daemon-reload &>>$LOG && systemctl start catalogue &>>$LOG  && systemctl enable catalogue &>>$LOG
