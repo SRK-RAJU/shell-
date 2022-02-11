@@ -1,7 +1,8 @@
 #!/bin/bash
 
 source components/common.sh
-
+cat $0 | grep ^Print
+exit
 Print "Installing Nodejs "
 yum install nodejs make gcc-c++ -y &>>$LOG
 Start $?
