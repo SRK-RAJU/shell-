@@ -5,10 +5,9 @@ yum install yum-utils  http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 
 Start $?
 
-Print "enable Redis Repos " &>>$LOG
+Print "enable Redis Repos "
+yum-config-manager --enable remi &>>$LOG
 Start $?
-
-yum-config-manager --enable remi &>>
 Print "Install  Redis "
 
 # yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
