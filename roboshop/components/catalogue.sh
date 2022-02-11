@@ -11,14 +11,14 @@ Start $?
 Print "Add Roboshop User"
 id roboshop &>>$LOG
 if [ $? -eq 0 ]; then
-  echo User Roboshop already exists &>>$LOG
-  else
+echo User Roboshop already exists &>>$LOG
+else
 
- useradd roboshop &>>$LOG
+useradd roboshop &>>$LOG
 
- fi
+fi
 
- Start $?
+Start $?
 
 ##So let's switch to the roboshop user and run the following commands.
 Print "Download Catalogue"
@@ -27,10 +27,10 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/cat
 Start $?
 
 Print "Remove the Roboshop Project"
- rm -rf /home/roboshop/catalogue &>>$LOG
+rm -rf /home/roboshop/catalogue &>>$LOG
 
- Start $?
- Print "Extracting Catalogue"
+Start $?
+Print "Extracting Catalogue"
 unzip -o -d /home/roboshop  /tmp/catalogue.zip &>>$LOG
 Start $?
 
@@ -58,6 +58,6 @@ Print "Copy SystemID file"
 #$ npm install
 ##NOTE: We need to update the IP address of MONGODB Server in systemd.service file
 ##Now, lets set up the service with systemctl.
- mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG
+mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG
 Start "Finally Catalogue Service Started "
 systemctl daemon-reload &>>$LOG && systemctl start catalogue &>>$LOG  && systemctl enable catalogue &>>$LOG
