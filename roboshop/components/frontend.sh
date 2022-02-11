@@ -2,7 +2,7 @@
 # The frontend is the service in RobotShop to serve the web content over Nginx.
 source components/common.sh
 
-MSPACE=$(cat $0 | grep ^Print |awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -l)
+MSPACE=$(cat $0 | grep ^Print | awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -l)
 
 Print "Installing Nginx"
 
