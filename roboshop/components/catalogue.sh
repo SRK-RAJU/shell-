@@ -14,35 +14,25 @@ id roboshop &>>$LOG
 if [ $? -eq 0 ]; then
 echo User Roboshop already exists &>>$LOG
 else
-
 useradd roboshop &>>$LOG
-
 fi
-
 Start $?
-
 ##So let's switch to the roboshop user and run the following commands.
 Print "Download Catalogue"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>$LOG
-
 Start $?
-
 Print "Remove the Roboshop Project"
 rm -rf /home/roboshop/catalogue
-
 Start $?
 Print "Extracting Catalogue"
 unzip -o -d /home/roboshop  /tmp/catalogue.zip &>>$LOG
 Start $?
-
 Print " Copy Content"
 mv /home/roboshop/catalogue-main  /home/roboshop/catalogue
 Start $?
-
 Print "Install Node.js Dependencies"
 cd /home/roboshop/catalogue
-
-##npm install  --unsafe-perm &>>$LOG
+npm install  --unsafe-perm &>>$LOG
 Start $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop /home/roboshop
