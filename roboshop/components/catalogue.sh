@@ -46,7 +46,7 @@ Print "Fix App Permission"
 sudo chown -R roboshop:roboshop /home/roboshop
 Start $?
 Print "Update DNS Records in SystemID Config"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue.service &>>$LOG
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service &>>$LOG
 Start $?
 Print "Copy SystemID file"
 
