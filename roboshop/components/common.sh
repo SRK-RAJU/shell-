@@ -24,7 +24,7 @@ rm -f $LOG
 
 NODEJS() {
 Print "Installing Nodejs "
-yum install nodejs make gcc-c++ -y &>>$LOG
+yum reinstall nodejs make gcc-c++ -y &>>$LOG
 Stat $?
 Print "Add Roboshop User"
 id roboshop &>>$LOG
@@ -50,7 +50,7 @@ mv /home/roboshop/${COMPONENT}-main  /home/roboshop/${COMPONENT}
 Stat $?
 Print "Install Node.js Dependencies"
 cd /home/roboshop/${COMPONENT}
-npm install  --unsafe-perm &>>$LOG
+npm install --unsafe-perm &>>$LOG
 Stat $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop /home/roboshop
