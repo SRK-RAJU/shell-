@@ -56,7 +56,7 @@ Start $?
 Print "Install Node.js Dependencies"
 cd /home/roboshop/${COMPONENT}
 ##npm install  --unsafe-perm &>>$LOG
-##Start $?
+Start $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop /home/roboshop
 Start $?
