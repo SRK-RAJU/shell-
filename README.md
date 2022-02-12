@@ -38,6 +38,7 @@ how to execute shell script in command prompt or server is
 ------
 ---
 bash script.sh
+======
 sh script.sh
 ---
 
