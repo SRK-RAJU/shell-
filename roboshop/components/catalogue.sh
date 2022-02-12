@@ -40,6 +40,7 @@ Start $?
 Print "Update DNS Records in SystemID Config"
 sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service &>>$LOG
 Start $?
+
 ##Print "Copy SystemID file"
 ##mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 ## mv  /home/roboshop/catalogue/systemd.service  /etc/systemd/system/catalogue.service  &>>$LOG
