@@ -10,7 +10,7 @@ Print () {
 ## echo -n -e "\e[1m$1\e[0m ... "
   echo -e "\n\e[36m================= $1 ================\e[0m" >>$LOG
 }
-Start() {
+Stat() {
   if [ $1 -eq 0 ]; then
     echo -e "\e[1;32mSUCCESS\e[0m"
     else
@@ -25,10 +25,7 @@ rm -f $LOG
 NODEJS() {
 Print "Installing Nodejs "
 yum install nodejs make gcc-c++ -y &>>$LOG
-Start $?
-
-## As part of operating system standards, we run all the applications and databases as a normal user but not with root user.
-
+Stat $?
 Print "Add Roboshop User"
 id roboshop &>>$LOG
 if [ $? -eq 0 ]; then
@@ -36,45 +33,43 @@ echo User Roboshop already exists &>>$LOG
 else
 useradd roboshop &>>$LOG
 fi
-Start $?
+Stat $?
 
 ##So let's switch to the roboshop user and run the following commands.
 Print "Download $COMPONENT_NAME"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>$LOG
-Start $?
+Stat $?
 Print "Remove the Roboshop Project"
 rm -rf /home/roboshop/${COMPONENT}
-Start $?
+Stat $?
 Print "Extracting $COMPONENT_NAME Content"
 unzip -o -d /home/roboshop  /tmp/${COMPONENT}.zip &>>$LOG
-Start $?
+Stat $?
 Print " Copy Content"
 mv /home/roboshop/${COMPONENT}-main  /home/roboshop/${COMPONENT}
-Start $?
+Stat $?
 Print "Install Node.js Dependencies"
 cd /home/roboshop/${COMPONENT}
 npm install  --unsafe-perm &>>$LOG
-Start $?
+Stat $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop /home/roboshop
-Start $?
+Stat $?
 
 Print "Update DNS Records in SystemID Config"
 ##sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e '/s/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT' /home/roboshop/${COMPONENT}/systemd.service &>>$LOG
 
 sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service   &>>$LOG
 
-Start $?
+Stat $?
 
 
 Print "Copy SystemID file"
 mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-## mv  /home/roboshop/user/systemd.service  /etc/systemd/system/user.service  &>>$LOG
-Start $?
-Start "Finally ${COMPONENT_NAME} Service Started"
-
+Stat $?
+Print "Finally Started  ${COMPONENT_NAME} Service"
 systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG  && systemctl enable ${COMPONENT} &>>$LOG
-Start $?
+Stat $?
 
 
 }
@@ -84,9 +79,9 @@ Print "Checking DB connections from App"
 sleep 5
 STAT=$(curl -s localhost:8080/health | jq .mongo)
 if [ "$STAT" == "true" ]; then
-  Start 0
+  Stat 0
   else
-    Start 1
+    Stat 1
     fi
 }
 CHECK_REDIS_FROM_APP()
@@ -95,8 +90,8 @@ Print "Checking DB connections from App"
 sleep 5
 STAT=$(curl -s localhost:8080/health | jq .redis)
 if [ "$STAT" == "true" ]; then
-  Start 0
+  Stat 0
   else
-    Start 1
+    Stat 1
     fi
 }

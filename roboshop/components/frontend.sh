@@ -4,40 +4,33 @@ source components/common.sh
 MSPACE=$(cat $0 | grep Print | awk -F '"' '{print $2}' | awk '{ print length }' | sort | tail -1)
 
 Print "Installing Nginx"
-
-# To Install Nginx.
 yum install nginx -y &>>$LOG
-Start $?
+Stat $?
 
 Print " Downloading HTML Pages"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-Start $?
+Stat $?
 
 Print "Remove Old Hmtl Pages"
 rm -rf  /usr/share/nginx/html/* &>>$LOG
-Start $?
+Stat $?
 
 Print "Extracting Frontend Archive"
 unzip -o -d  /tmp /tmp/frontend.zip &>>$LOG
-Start $?
+Stat $?
 
 Print "Copying files to nginx path"
 mv /tmp/frontend-main/static/* /usr/share/nginx/html/. &>>$LOG
-Start $?
+Stat $?
 Print "Copy nginx roboshop into config file"
 cp /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG
-Start $?
-
+Stat $?
 Print "Update Nginx Config file"
 sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/cart/ s/localhost/cart.roboshop.internal/'  -e '/user/ s/localhost/user.roboshop.internal/'  -e '/payment/ s/localhost/payment.roboshop.internal/'  -e '/shipping/ s/localhost/shipping.roboshop.internal/'   /etc/nginx/default.d/roboshop.conf  &>>$LOG
 Stat $?
-
-
 Print "Enabling Nginx"
-
 systemctl enable nginx &>>$LOG
-Start $?
-
+Stat $?
 Print "ReStarting Nginx"
 systemctl restart nginx &>>$LOG
-Start $?
+Stat $?
