@@ -88,3 +88,14 @@ if [ "$STAT" == "true" ]; then
     Start 1
     fi
 }
+CHECK_REDIS_FROM_APP()
+{
+Print "Checking DB connections from App"
+sleep 5
+STAT=$(curl -s localhost:8080/health | jq .redis)
+if [ "$STAT" == "true" ]; then
+  Start 0
+  else
+    Start 1
+    fi
+}
