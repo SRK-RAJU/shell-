@@ -3,7 +3,7 @@
 source components/common.sh
 MSPACE=$(cat $0 | grep ^Print | awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -1)
 Print "Installing Nodejs "
-yum reinstall nodejs make gcc-c++ -y &>>$LOG
+yum install nodejs make gcc-c++ -y &>>$LOG
 Start $?
 
 ## As part of operating system standards, we run all the applications and databases as a normal user but not with root user.
@@ -33,7 +33,7 @@ Start $?
 Print "Install Node.js Dependencies"
 cd /home/roboshop/catalogue
 ##npm install  --unsafe-perm &>>$LOG
-Start $?
+##Start $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop  /home/roboshop
 Start $?
@@ -41,10 +41,13 @@ Print "Update DNS Records in SystemID Config"
 sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service &>>$LOG
 Start $?
 
+
 ##Print "Copy SystemID file"
 ##mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 ## mv  /home/roboshop/catalogue/systemd.service  /etc/systemd/system/catalogue.service  &>>$LOG
+
 Start "Finally Catalogue Service Started"
+
 systemctl daemon-reload &>>$LOG && systemctl restart catalogue &>>$LOG  && systemctl enable catalogue &>>$LOG
 
 Print "Checking DB connections from App"
