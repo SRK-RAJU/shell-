@@ -24,7 +24,7 @@ rm -f $LOG
 
 NODEJS() {
 Print "Installing Nodejs "
-yum reinstall nodejs make gcc-c++ -y &>>$LOG
+yum install nodejs make gcc-c++ -y &>>$LOG
 Stat $?
 Print "Add Roboshop User"
 id roboshop &>>$LOG
