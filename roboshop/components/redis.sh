@@ -1,6 +1,6 @@
 #!/bin/bash
 source components/common.sh
-MSPACE=$(cat $0 | grep ^Print | awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -1)
+MSPACE=$(cat $0 | grep ^Print | awk -F '"' '{print $2}' | awk '{ print length }' | sort | tail -1)
 Print "Installing redis repos"
 yum install yum-utils  http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 
