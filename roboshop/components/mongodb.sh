@@ -27,6 +27,7 @@ Print "Start And Restart Mongodb"
 systemctl enable mongod &>>LOG
 
 ## Config file: /etc/mongod.conf
+Start $?
 
 
 # systemctl restart mongod
@@ -41,6 +42,8 @@ Start $?
 Print "Load the schema"
 
 cd /tmp/mongodb-main &>>$LOG
+Start $?
+
 
 mongo < catalogue.js &>>$LOG
 mongo < users.js &>>$LOG

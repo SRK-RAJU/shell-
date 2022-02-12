@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source components/common.sh
-
+MSPACE=$(cat $0 | grep ^Print | awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -1)
 Print "Installing Nodejs "
 yum install nodejs make gcc-c++ -y &>>$LOG
 Start $?
@@ -44,7 +44,7 @@ Print "Copy SystemID file"
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 ## mv  /home/roboshop/catalogue/systemd.service  /etc/systemd/system/catalogue.service  &>>$LOG
 Start "Finally Catalogue Service Started"
-systemctl daemon-reload &>>$LOG && systemctl start catalogue &>>$LOG  && systemctl enable catalogue &>>$LOG
+systemctl daemon-reload &>>$LOG && systemctl restart catalogue &>>$LOG  && systemctl enable catalogue &>>$LOG
 
 Print "Checking DB connections from App"
 sleep 5
