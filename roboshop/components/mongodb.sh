@@ -40,8 +40,6 @@ Start $?
 Print "Load the schema"
 
 cd /tmp/mongodb-main &>>$LOG
-Start $?
-
 
 mongo < catalogue.js &>>$LOG
 mongo < users.js &>>$LOG
