@@ -10,9 +10,6 @@ Print "enable Redis Repos "
 yum-config-manager --enable remi &>>$LOG
 Start $?
 Print "Install  Redis "
-
-# yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
-# yum-config-manager --enable remi
 yum install redis -y &>>$LOG
 Start $?
 
