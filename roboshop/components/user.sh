@@ -8,15 +8,4 @@ COMPONENT=user
 
 NODEJS
 
-
-Print "Checking DB connections from App"
-sleep 5
-STAT=$(curl -s localhost:8080/health | jq .mongo)
-if [ "$STAT" == "true" ]; then
-  Start 0
-  else
-    Start 1
-    fi
-
-
-exit
+CHECK_MONGO_FROM_APP
