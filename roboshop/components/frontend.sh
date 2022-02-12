@@ -28,9 +28,11 @@ Stat $?
 Print "Update Nginx Config file"
 sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/cart/ s/localhost/cart.roboshop.internal/'  -e '/user/ s/localhost/user.roboshop.internal/'  -e '/payment/ s/localhost/payment.roboshop.internal/'  -e '/shipping/ s/localhost/shipping.roboshop.internal/'   /etc/nginx/default.d/roboshop.conf  &>>$LOG
 Stat $?
-Print "ReStarting Nginx"
-systemctl restart nginx &>>$LOG
-Stat $?
+
 Print "Enabling Nginx"
 systemctl enable nginx &>>$LOG
+Stat $?
+
+Print "ReStarting Nginx"
+systemctl restart nginx &>>$LOG
 Stat $?
