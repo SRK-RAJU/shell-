@@ -3,7 +3,7 @@
 source components/common.sh
 MSPACE=$(cat $0 | grep ^Print | awk -F '*' '{print $2}' | awk '{print length}' | sort | tail -1)
 Print "Installing Nodejs "
-yum install nodejs make gcc-c++ -y &>>$LOG
+yum reinstall nodejs make gcc-c++ -y &>>$LOG
 Start $?
 
 ## As part of operating system standards, we run all the applications and databases as a normal user but not with root user.
@@ -32,7 +32,7 @@ mv /home/roboshop/catalogue-main  /home/roboshop/catalogue
 Start $?
 Print "Install Node.js Dependencies"
 cd /home/roboshop/catalogue
-npm install  --unsafe-perm &>>$LOG
+##npm install  --unsafe-perm &>>$LOG
 Start $?
 Print "Fix App Permission"
 sudo chown -R roboshop:roboshop  /home/roboshop
