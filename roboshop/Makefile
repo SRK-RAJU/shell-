@@ -13,25 +13,25 @@ help: ## This help dialog  help full for step by step
 git-pull:
 	@echo ---------- GIT PULL CODE RUNS ------------
 	@git pull &>/dev/null
-cart: git-pull  ## setup cart component
+cart: git-pull  ## setup Cart component
 	@sudo bash components/cart.sh
-catalogue: git-pull ## setup catalogue component
+catalogue: git-pull ## setup Catalogue component
 	@sudo bash components/catalogue.sh
-user:  git-pull ## setup user component
+user:  git-pull ## setup User component
 	@sudo bash components/user.sh
-shipping: git-pull ## setup shipping component
+shipping: git-pull ## setup Shipping component
 	@sudo bash components/shipping.sh
-mysql: git-pull ## setup mysql component
+mysql: git-pull ## setup MySQL component
 	@sudo bash components/mysql.sh
-mongodb: git-pull  ## setup mongodb component
+mongodb: git-pull  ## setup MongoDB component
 	@sudo bash components/mongodb.sh
-payment:git-pull  ## setup payment component
+payment:git-pull  ## setup Payment component
 	@sudo bash components/payment.sh
-frontend: git-pull ## setup frontend component
+frontend: git-pull ## setup Frontend component
 	@sudo bash components/frontend.sh
-rabbitmq: git-pull  ## setup rabbitmq component
+rabbitmq: git-pull  ## setup RabbitMQ component
 	@sudo bash components/rabbitmq.sh
-redis: git-pull  ## setup redis component
+redis: git-pull  ## setup Redis component
 	@sudo bash components/redis.sh
 
 
