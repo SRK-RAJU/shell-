@@ -25,19 +25,26 @@ Print "Start And Restart MongoDB"
  Print "Enabling MongoDB Service"
 systemctl enable mongod &>>$LOG
 Stat $?
+DOWNLOAD "/tmp"
+
+Print "Load Schema"
+cd /tmp/mongodb-main
+for db in catalogue users ; do
+  mongo < $db.js &>>$LOG
+done
+Stat $?
 
 #ery Database needs the schema to be loaded for the application to work.
 ##Download the schema and load it.
-Print "Download Schema"
-curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG
-Stat $?
-Print "Extract The Schema"
-unzip -o -d /tmp  /tmp/mongodb.zip &>>$LOG
-Stat $?
-Print "Load the schema"
-cd /tmp/mongodb-main
-mongo < catalogue.js &>>$LOG
-mongo < users.js &>>$LOG
-Stat $?
+##Print "Download Schema"
+##curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG
+##Stat $?
+##Print "Extract The Schema"
+##unzip -o -d /tmp  /tmp/mongodb.zip &>>$LOG
+##Stat $?
+##Print "Load the schema"
+##cd /tmp/mongodb-main
+##mongo < catalogue.js &>>$LOG && mongo < users.js &>>$LOG
+##Stat $?
 
 
