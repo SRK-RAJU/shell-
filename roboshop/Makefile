@@ -29,7 +29,7 @@ payment:git-pull  ## setup payment component
 	@sudo bash components/payment.sh
 frontend: git-pull ## setup frontend component
 	@sudo bash components/frontend.sh
-robbitmq: git-pull  ## setup robbitmq component
+rabbitmq: git-pull  ## setup rabbitmq component
 	@sudo bash components/robbitmq.sh
 redis: git-pull  ## setup redis component
 	@sudo bash components/redis.sh
