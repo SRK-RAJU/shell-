@@ -9,7 +9,7 @@ COMPONENT=shipping
 MAVEN
 
 sleep 10
-echo "its checking sleep"
+Print "its checking sleep"
 
 Print "Checking DB Connections from App"
 echo "Sleep is running "
