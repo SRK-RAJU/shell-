@@ -128,8 +128,8 @@ NODEJS() {
 CHECK_MONGO_FROM_APP() {
   Print "Checking DB Connections from APP"
   sleep 5
-  STAT=$(curl -s localhost:8080/health  | jq .mongo) &>>$LOG
-  if [ "$STAT" == "true" ]; then &>>$LOG
+  STAT=$(curl -s localhost:8080/health  | jq .mongo)
+  if [ "$STAT" == "true" ]; then
     Stat 0
   else
     Stat 1
@@ -140,8 +140,8 @@ CHECK_MONGO_FROM_APP() {
 CHECK_REDIS_FROM_APP() {
   Print "Checking DB Connections from APP"
   sleep 5
-  STAT=$(curl -s  localhost:8080/health  | jq .redis) &>>$LOG
-  if [ "$STAT" == "true" ]; then &>>$LOG
+  STAT=$(curl -s  localhost:8080/health  | jq .redis)
+  if [ "$STAT" == "true" ]; then
     Stat 0
   else
     Stat 1
