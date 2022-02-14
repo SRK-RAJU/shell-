@@ -54,7 +54,7 @@ ROBOSHOP_USER() {
 
 SYSTEMD() {
   Print "Fix App Permissions"
-  chown roboshop:roboshop /home/roboshop -R &>>$LOG
+  chown -R roboshop:roboshop /home/roboshop &>>$LOG
   Stat $?
 
    Print "Update DNS records in SystemD config"
@@ -62,17 +62,21 @@ SYSTEMD() {
     Stat $?
 
   Print "Copy SystemD file"
-  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>>$LOG
+  mv /home/roboshop/${COMPONENT}/systemd.service -d  /etc/systemd/system/${COMPONENT}.service &>>$LOG
   Stat $?
 
   Print "Start ${COMPONENT_NAME} Service"
-  systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+  systemctl daemon-reload &>>$LOG
+
+  sleep 15
+
+  systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   Stat $?
 }
 
 PYTHON() {
   Print "Install Python 3"
-  yum install python36 gcc python3-devel -y &>>$LOG
+  sudo yum install python36 gcc python3-devel -y &>>$LOG
   Stat $?
 
   ROBOSHOP_USER
@@ -94,7 +98,7 @@ PYTHON() {
 
 MAVEN() {
   Print "Install Maven"
-  yum install maven -y &>>$LOG
+  sudo yum install maven -y &>>$LOG
   Stat $?
 
   ROBOSHOP_USER
@@ -127,7 +131,7 @@ NODEJS() {
 
 CHECK_MONGO_FROM_APP() {
   Print "Checking DB Connections from APP"
-  sleep 5
+  sleep 10
   STAT=$(curl -s localhost:8080/health  | jq .mongo)
   if [ "$STAT" == "true" ]; then
     Stat 0
@@ -139,7 +143,7 @@ CHECK_MONGO_FROM_APP() {
 
 CHECK_REDIS_FROM_APP() {
   Print "Checking DB Connections from APP"
-  sleep 5
+  sleep 15
   STAT=$(curl -s  localhost:8080/health  | jq .redis)
   if [ "$STAT" == "true" ]; then
     Stat 0
