@@ -62,7 +62,7 @@ SYSTEMD() {
     Stat $?
 
   Print "Copy SystemD file"
-  mv /home/roboshop/${COMPONENT}/systemd.service -d  /etc/systemd/system/${COMPONENT}.service &>>$LOG
+  mv /home/roboshop/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service &>>$LOG
   Stat $?
 
   Print "Start ${COMPONENT_NAME} Service"
