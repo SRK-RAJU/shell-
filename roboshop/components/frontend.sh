@@ -4,7 +4,7 @@ source components/common.sh
 MSPACE=$(cat $0 | grep Print | awk -F '"' '{print $2}' | awk '{ print length }' | sort | tail -1 )
 
 Print "Installing Nginx"
-sudo yum reinstall nginx -y &>>$LOG
+sudo yum install nginx -y &>>$LOG
 Stat $?
 
 
