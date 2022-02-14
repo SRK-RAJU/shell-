@@ -8,8 +8,11 @@ COMPONENT=shipping
 
 MAVEN
 
+sleep 10
+
 Print "Checking DB Connections from App"
-sleep 15
+echo "Sleep is running "
+sleep 5
 STAT=$(curl -s http://localhost:8080/health)
 if [ "$STAT" == "ok" ] ; then
   Stat 0
