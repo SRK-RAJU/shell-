@@ -26,14 +26,16 @@ NEW_PASSWORD="RoboShop@1"
 echo 'show databases;' | mysql -uroot -p"${NEW_PASSWORD}"  &>>$LOG
 if [ $? -ne 0 ]; then
   Print "Changing the Default Password"
-  echo -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${NEW_PASSWORD}';\nuninstall plugin validate_password;" >/tmp/pass.sql
+  echo -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${NEW_PASSWORD}';
+  uninstall plugin validate_password;" >/tmp/pass.sql
   mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}" </tmp/pass.sql &>>$LOG
-  Stat $?
 fi
+Stat $?
+
 
 DOWNLOAD "/tmp"
 
 Print "Load Schema"
 cd /tmp/mysql-main
-mysql -u root -pRoboShop@1 <shipping.sql &>>$LOG
+mysql -uroot -pRoboShop@1 <shipping.sql &>>$LOG
 Stat $?
