@@ -30,7 +30,7 @@ DOWNLOAD "/tmp"
 Print "Load Schema"
 cd /tmp/mongodb-main
 for db in catalogue users ; do
-  mongo < ${db}.js &>>$LOG
+  mongo < $db.js &>>$LOG
 done
 Stat $?
 
