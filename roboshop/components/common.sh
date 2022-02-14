@@ -64,10 +64,9 @@ SYSTEMD() {
   Print "Copy SystemD file"
   mv /home/roboshop/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service &>>$LOG
   Stat $?
- sleep 5
   Print "Start ${COMPONENT_NAME} Service"
+  sleep 5
   systemctl daemon-reload &>>$LOG
-  reboot
   sleep 2
   systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   Stat $?
