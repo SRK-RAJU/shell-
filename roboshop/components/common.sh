@@ -64,12 +64,11 @@ SYSTEMD() {
   Print "Copy SystemD file"
   mv /home/roboshop/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service &>>$LOG
   Stat $?
-
+ sleep 5
   Print "Start ${COMPONENT_NAME} Service"
   systemctl daemon-reload &>>$LOG
-
-  sleep 15
-
+  reboot
+  sleep 2
   systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   Stat $?
 }
@@ -103,6 +102,7 @@ MAVEN() {
 
   ROBOSHOP_USER
   DOWNLOAD "/home/roboshop" &>>$LOG
+  Stat $?
 
   Print "Make Maven package"
   cd /home/roboshop/${COMPONENT} &>>$LOG
@@ -143,9 +143,9 @@ CHECK_MONGO_FROM_APP() {
 
 CHECK_REDIS_FROM_APP() {
   Print "Checking DB Connections from APP"
-  sleep 15
+  sleep 5
   STAT=$(curl -s  localhost:8080/health  | jq .redis)
-  if [ "$STAT" == "true" ]; then
+  if [ "$STAT" == "ok" ]; then
     Stat 0
   else
     Stat 1
