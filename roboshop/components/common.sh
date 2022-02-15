@@ -74,7 +74,7 @@ SYSTEMD() {
   Stat $?
   Print "Start ${COMPONENT_NAME} Service"
   sudo systemctl daemon-reload &>>$LOG
-  systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+ sudo  systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   Stat $?
 }
 
@@ -137,7 +137,7 @@ NODEJS() {
 CHECK_MONGO_FROM_APP() {
   Print "Checking DB Connections from APP"
   sleep 10
-  STAT=$(curl -s localhost:8080/health  | jq .mongo)
+  STAT="$(curl -s localhost:8080/health  | jq .mongo)"
   if [ "$STAT" == "true" ]; then
     Stat 0
   else
