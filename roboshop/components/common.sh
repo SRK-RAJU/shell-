@@ -66,15 +66,17 @@ SYSTEMD() {
        -e 's/DBHOST/mysql.roboshop.internal/' -e  \
        's/CARTHOST/cart.roboshop.internal/' \
        -e 's/USERHOST/user.roboshop.internal/' \
-       -e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service  &>>$LOG
+       -e 's/AMQPHOST/rabbitmq.roboshop.internal/' \
+       /home/roboshop/${COMPONENT}/systemd.service  &>>$LOG
     Stat $?
 
   Print "Copy SystemD file"
   mv  /home/roboshop/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service &>>$LOG
   Stat $?
   Print "Start ${COMPONENT_NAME} Service"
-  sudo systemctl daemon-reload &>>$LOG
- sudo  systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+  echo "Deamon Reload Running "
+  systemctl daemon-reload &>>$LOG
+  systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   Stat $?
 }
 
@@ -135,9 +137,11 @@ NODEJS() {
 }
 
 CHECK_MONGO_FROM_APP() {
-  Print "Checking DB Connections from APP"
+  Print "Checking DB Connections from APP IN Mongo"
   sleep 10
-  STAT="$(curl -s localhost:8080/health  | jq .mongo)"
+  echo status= $STAT
+
+  STAT=$(curl -s localhost:8080/health  | jq .mongo)
   if [ "$STAT" == "true" ]; then
     Stat 0
   else
@@ -147,8 +151,9 @@ CHECK_MONGO_FROM_APP() {
 
 
 CHECK_REDIS_FROM_APP() {
-  Print "Checking DB Connections from APP"
-  sleep 5
+  Print "Checking DB  Connections from APP In Redis "
+  sleep 10
+  echo ststus = $STAT
   STAT=$(curl -s localhost:8080/health  | jq .redis)
   if [ "$STAT" == "true" ]; then
     Stat 0

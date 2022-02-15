@@ -1,6 +1,7 @@
 #!/bin/bash
 source components/common.sh
 MSPACE=$(cat $0 components/common.sh | grep Print | awk -F '"' '{print $2}' | awk '{ print length }' | sort | tail -1 )
+
 Print "Installing EPEL RELEASE"
 yum install epel-release yum-utils -y
 Start $?
@@ -15,7 +16,7 @@ Print "Install  Redis "
 sudo yum install redis -y &>>$LOG
 Stat $?
 Print "Update Redis Listen Address "
-sed -i -e "s/127.0.0.1/0.0.0.0/g" /etc/redis.conf /etc/redis/redis.conf &>>$LOG
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>$LOG
 Stat $?
 Print "Start Redis Database"
 systemctl restart redis &>>$LOG  && systemctl enable redis &>>$LOG
