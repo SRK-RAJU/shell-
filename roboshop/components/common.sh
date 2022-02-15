@@ -66,7 +66,7 @@ SYSTEMD() {
        -e 's/DBHOST/mysql.roboshop.internal/' -e  \
        's/CARTHOST/cart.roboshop.internal/' \
        -e 's/USERHOST/user.roboshop.internal/' \
-       e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service  &>>$LOG
+       -e 's/AMQPHOST/rabbitmq.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service  &>>$LOG
     Stat $?
 
   Print "Copy SystemD file"
