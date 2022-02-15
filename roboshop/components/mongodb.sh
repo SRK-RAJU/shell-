@@ -15,7 +15,7 @@ yum install -y mongodb-org &>>$LOG
 Stat $?
 
 Print "Update MongoDB Config"
-sed -i -e "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$LOG
+sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>>$LOG
 Stat $?
 
 # Liste IP address from 127.0.0.1 to 0.0.0.0 in config file
