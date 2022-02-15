@@ -74,7 +74,7 @@ SYSTEMD() {
   mv  /home/roboshop/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service &>>$LOG
   Stat $?
   Print "Start ${COMPONENT_NAME} Service"
-  echo "Deamon Reload Running "
+ ## echo "Deamon Reload Running "
   systemctl daemon-reload &>>$LOG
   systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
   Stat $?
@@ -139,7 +139,7 @@ NODEJS() {
 CHECK_MONGO_FROM_APP() {
   Print "Checking DB Connections from APP IN Mongo"
   sleep 10
-  echo status= $STAT
+  ##echo status= $STAT
 
   STAT=$(curl -s localhost:8080/health  | jq .mongo)
   if [ "$STAT" == "true" ]; then
