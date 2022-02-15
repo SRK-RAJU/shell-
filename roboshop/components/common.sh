@@ -151,11 +151,24 @@ CHECK_MONGO_FROM_APP() {
 CHECK_REDIS_FROM_APP() {
   Print "Checking DB  Connections from APP In Redis "
   sleep 15
-  ##echo ststus = $STAT
+  echo status = $STAT
   STAT=$(curl -s localhost:8080/health  | jq .redis)
   if [ "$STAT" == "true" ]; then
     Stat 0
   else
     Stat 1
   fi
+}
+CHECK_SHIPPING_FROM_APP()
+{
+  Print "Checking DB  Connections from APP In Redis "
+    sleep 15
+  echo status = $STAT
+    STAT=$(curl -s localhost:8080/health  | jq .shipping)
+    if [ "$STAT" == "OK" ]; then
+      Stat 0
+    else
+      Stat 1
+    fi
+
 }
