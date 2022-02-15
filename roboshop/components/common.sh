@@ -163,7 +163,7 @@ CHECK_SHIPPING_FROM_APP()
 {
   Print "Checking DB  Connections from APP In Redis "
     sleep 15
-  echo status = $STAT
+  ##echo status = $STAT
     STAT=$(curl -s localhost:8080/health  | jq .shipping)
     if [ "$STAT" == "OK" ]; then
       Stat 0
