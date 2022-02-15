@@ -10,7 +10,7 @@ MAVEN
 ##CHECK_SHIPPING_FROM_APP
 Print "Checking DB Connections from App"
 sleep 15
-echo status = $STAT
+##echo status = $STAT
 
 STAT=$(curl -s "http://localhost:8080/health")
 if [ "$STAT" == "OK" ]; then
