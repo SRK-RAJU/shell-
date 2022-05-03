@@ -7,7 +7,7 @@
         "Action": "UPSERT",
         "ResourceRecordSet": {
             "Name":"DNSNAME" ,
-            "Type": "CNAME",
+            "Type": "A",
             "TTL": 30,
             "ResourceRecords": [
                 {
