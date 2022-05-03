@@ -18,7 +18,7 @@ Stat $?
 
 cd /usr/share/nginx/html/
 
-Print "Extracting Frontend Archive"
+Print "Extracting Frontend Archive\t\t\t"
 unzip  /tmp/frontend.zip &>>$LOG && mv frontend-main/* . &>>$LOG  && mv static/* &>>$LOG
 #unzip -o -d  /tmp /tmp/frontend.zip &>>$LOG
 Stat $?
