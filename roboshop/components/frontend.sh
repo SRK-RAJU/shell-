@@ -9,17 +9,18 @@ Stat $?
 
 
 Print " Downloading HTML Pages"
-curl  -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+curl  -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 Stat $?
 
-Print "Remove Old Hmtl Pages"
-rm -rf  /usr/share/nginx/html/* &>>$LOG
-Stat $?
+#Print "Remove Old Hmtl Pages"
+#rm -rf  /usr/share/nginx/html/* &>>$LOG
+#Stat $?
 
-cd /usr/share/nginx/html/
+#cd /usr/share/nginx/html/
 
-Print "Extracting Frontend Archive\t\t\t"
-unzip  /tmp/frontend.zip &>>$LOG && mv frontend-main/* . &>>$LOG  && mv static/* &>>$LOG
+Print "Extracting Frontend Archive"
+rm -rf /usr/share/nginx/* && cd /usr/share/nginx && unzip -o /tmp/frontend.zip  &>>$LOG  && mv frontend-main/* .  &>>$LOG  &&   mv static html  &>>$LOG
+#unzip  /tmp/frontend.zip &>>$LOG && mv frontend-main/* . &>>$LOG  && mv static/* &>>$LOG
 #unzip -o -d  /tmp /tmp/frontend.zip &>>$LOG
 Stat $?
 
