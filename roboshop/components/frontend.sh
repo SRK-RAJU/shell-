@@ -34,7 +34,7 @@ Print "Enabling Nginx"
 systemctl enable nginx &>>$LOG
 Stat $?
 Print "status nginx"
-Sudo systemctl status nginx &>>$LOG
+sudo systemctl status nginx &>>$LOG
 Stat $?
 
 
