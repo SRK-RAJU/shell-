@@ -33,7 +33,11 @@ Stat $?
 Print "Enabling Nginx"
 systemctl enable nginx &>>$LOG
 Stat $?
+Print "status nginx"
+Sudo systemctl status nginx &>>$LOG
+Stat $?
+
 
 Print "ReStarting Nginx"
-systemctl restart nginx &>>$LOG
+sudo systemctl restart nginx &>>$LOG
 Stat $?
