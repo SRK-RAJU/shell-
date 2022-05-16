@@ -200,7 +200,7 @@ NODEJS() {
   statusCheck $?
 
   ECHO "Install NodeJS"
-  yum install nodejs  gcc-c++ -y &>>${LOG_FILE}
+  yum install nodejs make  gcc-c++ -y &>>${LOG_FILE}
   statusCheck $?
 
   APPLICATION_SETUP
