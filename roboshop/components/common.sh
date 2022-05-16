@@ -196,7 +196,7 @@ SYSTEMD_SETUP() {
 
 NODEJS() {
   ECHO "Configure NodeJS YUM Repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>${LOG_FILE}
+  curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -  &>>${LOG_FILE}
   statusCheck $?
 
   ECHO "Install NodeJS"
