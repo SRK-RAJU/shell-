@@ -248,28 +248,28 @@ PYTHON() {
 }
 
 CHECK_MONGO_FROM_APP() {
-  Print "Checking DB Connections from APP IN Mongo"
+  ECHO "Checking DB Connections from APP IN Mongo"
   sleep 10
   ##echo status= $STAT
 
   STAT=$(curl -s localhost:8080/health  | jq .mongo)
   if [ "$STAT" == "true" ]; then
-    Stat 0
+    statusCheck 0
   else
-    Stat 1
+    statusCheck 1
   fi
 }
 
 
 CHECK_REDIS_FROM_APP() {
-  Print "Checking DB  Connections from APP In Redis "
+  ECHO "Checking DB  Connections from APP In Redis "
   sleep 15
  ## echo status = $STAT
   STAT=$(curl -s localhost:8080/health  | jq .redis)
   if [ "$STAT" == "true" ]; then
-    Stat 0
+    statusCheck 0
   else
-    Stat 1
+    statusCheck 1
   fi
 }
 #CHECK_SHIPPING_FROM_APP()
