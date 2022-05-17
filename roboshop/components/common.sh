@@ -206,7 +206,8 @@ NODEJS() {
   APPLICATION_SETUP
 
   ECHO "Install NodeJS Modules"
-  cd /home/roboshop/${COMPONENT} && sudo yum install npm nodejs &>>${LOG_FILE}
+  cd /home/roboshop/${COMPONENT}
+  sudo yum install npm nodejs --unsafe-perm &>>${LOG_FILE}
   statusCheck $?
 
   SYSTEMD_SETUP
