@@ -200,13 +200,13 @@ NODEJS() {
 #  statusCheck $?
 
   ECHO "Install NodeJS"
-  yum install nodejs  gcc-c++ -y &>>${LOG_FILE}
+  yum install nodejs make  gcc-c++ -y &>>${LOG_FILE}
   statusCheck $?
 
   APPLICATION_SETUP
 
   ECHO "Install NodeJS Modules"
-  cd /home/roboshop/${COMPONENT} && npm install &>>${LOG_FILE}
+  cd /home/roboshop/${COMPONENT} && sudo yum install npm nodejs &>>${LOG_FILE}
   statusCheck $?
 
   SYSTEMD_SETUP
