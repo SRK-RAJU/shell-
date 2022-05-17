@@ -207,7 +207,8 @@ NODEJS() {
 
   ECHO "Install NodeJS Modules"
   cd /home/roboshop/${COMPONENT}
-  npm upgrade
+  #npm upgrade
+  npm upgrade audit fix --force
   sudo yum install npm nodejs &>>${LOG_FILE}
   statusCheck $?
 
