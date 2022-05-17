@@ -211,7 +211,8 @@ NODEJS() {
   ECHO "Install NodeJS Modules"
   cd /home/roboshop/${COMPONENT}
   #npm upgrade
-  npm upgrade audit fix --force
+ # npm upgrade audit fix --force
+ npm reinstall --unsafe-perm audit fix --force
   sudo yum reinstall npm nodejs &>>${LOG_FILE}
   statusCheck $?
 
