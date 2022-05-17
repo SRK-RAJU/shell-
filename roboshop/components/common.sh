@@ -199,9 +199,9 @@ NODEJS() {
 #  curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -  &>>${LOG_FILE}
 #  statusCheck $?
 
-  ECHO "Install NodeJS"
-  yum install nodejs make  gcc-c++ -y &>>${LOG_FILE}
-  statusCheck $?
+#  ECHO "Install NodeJS"
+#  yum install nodejs make  gcc-c++ -y &>>${LOG_FILE}
+#  statusCheck $?
 
   APPLICATION_SETUP
 
