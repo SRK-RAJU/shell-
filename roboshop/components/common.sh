@@ -199,9 +199,12 @@ NODEJS() {
 #  curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -  &>>${LOG_FILE}
 #  statusCheck $?
 
-#  ECHO "Install NodeJS"
-#  yum install nodejs make  gcc-c++ -y &>>${LOG_FILE}
-#  statusCheck $?
+  ECHO "Install NodeJS"
+  yum reinstall nodejs make  gcc-c++ -y &>>${LOG_FILE}
+  statusCheck $?
+
+  yum reinstall yum-utils
+
 
   APPLICATION_SETUP
 
@@ -209,7 +212,7 @@ NODEJS() {
   cd /home/roboshop/${COMPONENT}
   #npm upgrade
   npm upgrade audit fix --force
-  sudo yum install npm nodejs &>>${LOG_FILE}
+  sudo yum reinstall npm nodejs &>>${LOG_FILE}
   statusCheck $?
 
   SYSTEMD_SETUP
